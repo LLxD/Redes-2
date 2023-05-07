@@ -123,10 +123,9 @@ public class Server extends JFrame implements ActionListener {
         boolean done = false;
         while (!done) {
             request_type = theServer.parse_RTSP_request(); // blocking
-
+            System.out.println(request_type);
             if (request_type == SETUP) {
                 done = true;
-
                 // update RTSP state
                 state = READY;
                 System.out.println("New RTSP state: READY");
@@ -205,7 +204,7 @@ public class Server extends JFrame implements ActionListener {
                 senddp = new DatagramPacket(packet_bits, packet_length, ClientIPAddr, RTP_dest_port);
                 RTPsocket.send(senddp);
 
-                // System.out.println("Send frame #"+imagenb);
+                System.out.println("Send frame #" + imagenb);
                 // print the header bitstream
                 rtp_packet.printheader();
 
@@ -229,7 +228,7 @@ public class Server extends JFrame implements ActionListener {
         try {
             // parse request line and extract the request_type:
             String RequestLine = RTSPBufferedReader.readLine();
-            // System.out.println("RTSP Server - Received from Client:");
+            System.out.println("RTSP Server - Received from Client:");
             System.out.println(RequestLine);
 
             StringTokenizer tokens = new StringTokenizer(RequestLine);
@@ -285,7 +284,7 @@ public class Server extends JFrame implements ActionListener {
             RTSPBufferedWriter.write("CSeq: " + RTSPSeqNb + CRLF);
             RTSPBufferedWriter.write("Session: " + RTSP_ID + CRLF);
             RTSPBufferedWriter.flush();
-            // System.out.println("RTSP Server - Sent response to Client.");
+            System.out.println("RTSP Server - Sent response to Client.");
         } catch (Exception ex) {
             System.out.println("Exception caught: " + ex);
             System.exit(0);

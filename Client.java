@@ -146,7 +146,7 @@ public class Client {
     class setupButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            // System.out.println("Setup Button pressed !");
+            System.out.println("Setup Button pressed !");
 
             if (state == INIT) {
                 // Init non-blocking RTPsocket that will be used to receive data
@@ -158,7 +158,6 @@ public class Client {
 
                     // set TimeOut value of the socket to 5msec.
                     RTPsocket.setSoTimeout(5);
-
                 } catch (SocketException se) {
                     System.out.println("Socket exception: " + se);
                     System.exit(0);
@@ -176,7 +175,10 @@ public class Client {
                 else {
                     // change RTSP state and print new state
                     // state = ....
-                    // System.out.println("New RTSP state: ....");
+                    state = READY;
+
+                    System.out.println("New RTSP state: ....");
+                    System.out.println(state);
                 }
             } // else if state != INIT then do nothing
         }
@@ -187,7 +189,7 @@ public class Client {
     class playButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            // System.out.println("Play Button pressed !");
+            System.out.println("Play Button pressed !");
 
             if (state == READY) {
                 // increase RTSP sequence number
@@ -202,7 +204,7 @@ public class Client {
                 else {
                     // change RTSP state and print out new state
                     // .....
-                    // System.out.println("New RTSP state: ...")
+                    System.out.println("New RTSP state: ...");
 
                     // start the timer
                     timer.start();
@@ -216,7 +218,7 @@ public class Client {
     class pauseButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            // System.out.println("Pause Button pressed !");
+            System.out.println("Pause Button pressed !");
 
             if (state == PLAYING) {
                 // increase RTSP sequence number
@@ -231,7 +233,7 @@ public class Client {
                 else {
                     // change RTSP state and print out new state
                     // ........
-                    // System.out.println("New RTSP state: ...");
+                    System.out.println("New RTSP state: ...");
 
                     // stop the timer
                     timer.stop();
@@ -246,7 +248,7 @@ public class Client {
     class tearButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
-            // System.out.println("Teardown Button pressed !");
+            System.out.println("Teardown Button pressed !");
 
             // increase RTSP sequence number
             // ..........
@@ -260,7 +262,7 @@ public class Client {
             else {
                 // change RTSP state and print out new state
                 // ........
-                // System.out.println("New RTSP state: ...");
+                System.out.println("New RTSP state: ...");
 
                 // stop the timer
                 timer.stop();
@@ -308,7 +310,7 @@ public class Client {
                 icon = new ImageIcon(image);
                 iconLabel.setIcon(icon);
             } catch (InterruptedIOException iioe) {
-                // System.out.println("Nothing to read");
+                System.out.println("Nothing to read");
             } catch (IOException ioe) {
                 System.out.println("Exception caught: " + ioe);
             }
@@ -324,7 +326,7 @@ public class Client {
         try {
             // parse status line and extract the reply_code:
             String StatusLine = RTSPBufferedReader.readLine();
-            // System.out.println("RTSP Client - Received from Server:");
+            System.out.println("RTSP Client - Received from Server:");
             System.out.println(StatusLine);
 
             StringTokenizer tokens = new StringTokenizer(StatusLine);
