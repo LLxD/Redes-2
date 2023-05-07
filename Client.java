@@ -117,6 +117,7 @@ public class Client {
         int RTSP_server_port = Integer.parseInt(argv[1]);
         String ServerHost = argv[0];
         InetAddress ServerIPAddr = InetAddress.getByName(ServerHost);
+        System.out.println("Server IP address: " + ServerIPAddr);
 
         // get video filename to request:
         VideoFileName = argv[2];

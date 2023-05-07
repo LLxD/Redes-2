@@ -227,6 +227,7 @@ public class Server extends JFrame implements ActionListener {
         int request_type = -1;
         try {
             // parse request line and extract the request_type:
+            System.out.println("RTSP Server - Started to read from Client:");
             String RequestLine = RTSPBufferedReader.readLine();
             System.out.println("RTSP Server - Received from Client:");
             System.out.println(RequestLine);
